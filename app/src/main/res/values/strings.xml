@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Decimal to hexadecimal converter (4 and 8 bit)</string>
+    <string name="app_name">DecToHex</string>
+    <string name="heading">Decimal to Hexadecimal converter</string>
+    <string name="task">... to be added here ...</string>
+    <string name="subheading">4 and 8 bit</string>
+    <string name="formatPattern">Format: &#60;sign&#62;&#60;Hexadecimal&#62;.&#60;decimals&#62; </string>
+    <string name="mathSymbols">* 16^</string>
+    <string name="zero">0</string>
 </resources>

@@ -6,13 +6,123 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2196F3"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heading_text_height"
+                android:background="#2196F3"
+                android:gravity="center"
+                android:keepScreenOn="true"
+                android:text="@string/heading"
+                android:textColor="@color/white"
+                android:textSize="@dimen/heading_text_size"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/heading_text_height"
+                    android:layout_weight="1"
+                    android:background="#2196F3"
+                    android:textSize="@dimen/heading_text_size" />
+
+                <TextView
+                    android:id="@+id/task"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/heading_text_height"
+                    android:layout_weight="7"
+                    android:background="#2196F3"
+                    android:gravity="center"
+                    android:keepScreenOn="true"
+                    android:text="@string/task"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/heading_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/heading_text_height"
+                    android:layout_weight="1"
+                    android:background="#2196F3"
+                    android:textSize="@dimen/heading_text_size" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heading_text_height"
+                android:background="#2196F3"
+                android:gravity="center"
+                android:keepScreenOn="true"
+                android:text="@string/subheading"
+                android:textColor="@color/white"
+                android:textSize="@dimen/subheading_text_size"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/description_text_height"
+                android:gravity="bottom"
+                android:keepScreenOn="true"
+                android:text="@string/formatPattern"
+                android:textColor="@color/black"
+                android:textSize="@dimen/description_text_size"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|center_horizontal"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/hex"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/solution_text_height"
+                    android:layout_weight="7"
+                    android:background="@drawable/edit_text_frame"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/solution_text_height"
+                    android:layout_weight="1"
+                    android:text="@string/mathSymbols"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/solution_text_height"
+                    android:layout_weight="1"
+                    android:text="@string/zero"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
