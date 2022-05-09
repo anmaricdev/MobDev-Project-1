@@ -8,7 +8,9 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import java.lang.Exception
 import kotlin.math.pow
+import kotlin.math.withSign
 
 class MainActivity : AppCompatActivity() {
     // tag for logging
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         hexInput.addTextChangedListener(textWatcher)
 
         //create first task
-        createTask();
+        createTask()
     }
 
     private fun createTask() {
@@ -102,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         //number = -1f // ok
         //number = 0.5f // ok
         //number = -0.5f // ok
-        //number = 63f // ok
+        number = -14.5f // ok
         //number = -0.0625f // ok
         //number = -34.125f // ok
         //number = 55.5f // ok
@@ -110,10 +112,20 @@ class MainActivity : AppCompatActivity() {
         //number = 22.0625f // ok
 // end section for testing
         // now calculate correct solutions, based on decimal to hexadecimal conversion
-        // if (number >= 0) {}
-
+        /* if (number >= 0) {
+             hexCorrect = "+1"
+         }
+         else {
+             hexCorrect = "-1"
+         }
+        */
         Log.v(TAG, "Number: " + number.toString())
-        hexCorrect = String.format("%X", number.toInt())
+        try {
+            //hexCorrect = Integer.toHexString(number)
+            hexCorrect = (String.format("%x", number))
+            Log.v(TAG, "Hexadecimal representation: " + hexCorrect)
+        } catch (exception : Exception){println(exception.toString())}
+
 
         // put new task to UI
         taskView.text = number.toString()
