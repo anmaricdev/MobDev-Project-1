@@ -8,9 +8,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import java.lang.Exception
 import kotlin.math.pow
-import kotlin.math.withSign
 
 class MainActivity : AppCompatActivity() {
     // tag for logging
@@ -29,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             if (hexInput.hasFocus() && s.toString() == hexCorrect) {
                 dialog.show()
-                //continue with next task
+                // continue with next task
                 createTask()
             }
         }
@@ -71,55 +69,45 @@ class MainActivity : AppCompatActivity() {
         hexInput.setText("")
 
         //create new task, first create random number
-        val minExp = 1
+        val minExp = 0
         val maxExp = 1
-        val parts = List(maxExp - minExp + 2) { 16f.pow(maxExp-it) }
+        val parts = List(maxExp - minExp + 1) { 16f.pow(maxExp-it) }
         Log.v(TAG, "List with values: " + parts.toString())
         val randVal = MutableList(maxExp - minExp + 2) { (0..15).random() }
         Log.v(TAG, "Random values: " + randVal.toString())
         number = 0
         for (i in 0..(maxExp - minExp)) {
             number += parts[i].toInt() * randVal[i]
-            Log.v(TAG, "parts: " + parts.toString())
-            Log.v(TAG, "randVal: " + randVal.toString())
         }
 // section for testing: just for one case: 0f and check whether it is changed
-        // number = 0f // ok for -0.5, -0.125, 2, 8, -32, 0.0625
+        //number = 0f // ok
 // end section for testing
         // check whether number is still zero, if so change it
-        if (number == 0) { //attention: in general it is not safe to use == for comparison of floats!
+        // attention: in general it is not safe to use == for comparison of floats!
+        if (number == 0) {
             val randNum = (0..(maxExp - minExp)).random()
             randVal[randNum] = 1
             number = parts[randNum].toInt()
         }
-        // finalize number calculation (sign)
-        if (randVal[maxExp - minExp + 1] == (0..15).random()) {
-            number = -number
-        }
-// section for testing: set other numbers here
-        //number = 63.9375f // ok
-        //number = -63.9375f // ok
+// section for testing
         //number = 127 // ok
-        //number = -1f // ok
-        //number = 0.5f // ok
-        //number = -0.5f // ok
-        //number = -14.5f // ok
-        //number = -0.0625f // ok
-        //number = -34.125f // ok
-        //number = 55.5f // ok
-        //number = -3.6875f // ok
-        //number = 22.0625f // ok
+        //number = 5 // ok
+        //number = 9 // ok
+        //number = 1 // ok
+        //number = 69 // ok
+        //number = 11 // ok
+        //number = 123 // ok
+        //number = 231 // ok
+        //number = 255 // ok
+        //number = 3 // ok
+        //number = 222 // ok
+        //number = 111 // ok
 // end section for testing
+
         // now calculate correct solutions, based on decimal to hexadecimal conversion
-        if (number >= 0) {
-            hexCorrect = "+" + (String.format("%X", number))
-        } else {
-            hexCorrect = (String.format("%X", number))
-            hexCorrect = "-" + trimHexBits(hexCorrect)
-        }
+        // convert number to a HexString
         Log.v(TAG, "Number: " + number.toString())
-        //hexCorrect = (String.format("%X", number))
-        //hexCorrect = Integer.toHexString(number)
+        hexCorrect = (String.format("%X", number))
         Log.v(TAG, "Hexadecimal representation: " + hexCorrect)
 
 
@@ -128,12 +116,5 @@ class MainActivity : AppCompatActivity() {
 
         // set focus on first input field
         hexInput.requestFocus()
-    }
-
-    // getting rid of the first 6 F digits that come while converting from a negative decimal number to hex
-    // e.g before: (decimal) -144 -> (hex) FFFFFF70 | after:(decimal) -144 -> (hex) -70
-    private fun trimHexBits(s: String) : String{
-        val str = s.trimStart(){it == 'F'}
-        return str
     }
 }
