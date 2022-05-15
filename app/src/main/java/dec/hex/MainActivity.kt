@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity() {
         // now calculate correct solutions, based on decimal to hexadecimal conversion
         // convert number to a HexString
         Log.v(TAG, "Number: " + number.toString())
+        // formatting capital letters for A to F
         hexCorrect = (String.format("%X", number))
         Log.v(TAG, "Hexadecimal representation: " + hexCorrect)
 
